@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>环球自驾六年计划 · 2026–2032</title>
+<meta name="description" content="从郑州出发的环球自驾分阶段计划：国内练手 → 新西兰/美西 → 北欧/冰岛 → 澳洲/南非 → 南美。交互地图 + 逐日行程 + 准备清单。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚙</text></svg>">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-kicker">从郑州出发 · 飞行 + 当地租车 · 先近后远 · 玩得爽不逞强</p>
+    <h1>环球自驾<span class="accent">六年计划</span></h1>
+    <p class="hero-sub" id="heroSub"></p>
+    <div class="hero-stats" id="heroStats"></div>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span id="progressLabel">我的集齐进度</span>
+        <span id="progressText">0 / 11 段</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#map" class="btn btn-primary">查看全球路线图</a>
+      <a href="#timeline" class="btn btn-ghost">按年份看计划</a>
+    </div>
+  </div>
+</header>
+
+<nav class="topnav" id="topnav">
+  <span class="topnav-brand">🚙 环球自驾六年计划</span>
+  <div class="topnav-links">
+    <a href="#map">路线地图</a>
+    <a href="#timeline">时间线</a>
+    <a href="#difficulty">难度曲线</a>
+    <a href="#strategy">签证与策略</a>
+    <a href="#prep">出发清单</a>
+  </div>
+</nav>
+
+<main>
+
+<section id="map" class="section">
+  <div class="section-head">
+    <h2>全球路线地图</h2>
+    <p>每条彩色线是一段自驾（同段多色线之间为飞行接驳）。点击线或序号查看逐日行程。</p>
+  </div>
+  <div class="stage-filter" id="stageFilter"></div>
+  <div id="mapBox" class="map-box"></div>
+  <p class="map-note">💡 放大到各大洲可看到逐站锚点；拖动 / 滚轮缩放。</p>
+</section>
+
+<section id="timeline" class="section">
+  <div class="section-head">
+    <h2>六年时间线</h2>
+    <p>先国内练手攒经验，再去驾驶友好的国家，最后挑战高难度远征；季节全部卡在各段最佳窗口。</p>
+  </div>
+  <div id="timelineWrap"></div>
+  <div class="extras" id="extrasBox"></div>
+</section>
+
+<section id="difficulty" class="section">
+  <div class="section-head">
+    <h2>难度曲线：循序渐进</h2>
+    <p>整体坡度平缓上升：练手期起步，远征期登顶，中间穿插轻松的「回血段」，避免连续疲劳作战。</p>
+  </div>
+  <div id="chartBox" class="chart-box"></div>
+  <div class="chart-legend" id="chartLegend"></div>
+</section>
+
+<section id="strategy" class="section">
+  <div class="section-head">
+    <h2>签证、驾照与节奏策略</h2>
+  </div>
+  <div class="strategy-grid" id="strategyGrid"></div>
+</section>
+
+<section id="prep" class="section">
+  <div class="section-head">
+    <h2>出发准备清单</h2>
+    <p>勾选状态自动保存在本机浏览器（localStorage），换设备不同步。</p>
+  </div>
+  <div class="prep-progress"><span id="prepText">0 / 0 项</span></div>
+  <div class="prep-grid" id="prepWrap"></div>
+</section>
+
+</main>
+
+<footer>
+  <p>🚙 环球自驾六年计划 · 2026–2032 · 签证政策与道路开放情况（独库公路、精灵之路、梦莲湖接驳等）请以出行当季官方信息为准。</p>
+  <p class="muted">数据与代码开源在 <a id="repoLink" href="#" target="_blank" rel="noopener">GitHub</a> · 地图由 Leaflet 渲染</p>
+</footer>
+
+<div class="modal-overlay" id="modalOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <button class="modal-close" id="modalClose" aria-label="关闭">×</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
