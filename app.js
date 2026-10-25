@@ -3,7 +3,8 @@
   "use strict";
 
   var SHORT = {
-    l1: "滇南", l2: "川西", l3: "新疆", l4: "新西兰", l5: "美西",
+    l1: "滇南", hainan: "海南", l2: "川西", l3: "新疆", xibei: "青甘", dongbei: "东北",
+    l4: "新西兰", l5: "美西",
     l6: "挪威", l7: "冰岛", l8: "澳洲", l9: "南非", l10: "南美", l11: "落基山",
   };
   var DIFF_LABEL = { 1: "轻松", 2: "舒适", 3: "适中", 4: "挑战", 5: "远征" };
@@ -76,9 +77,8 @@
 
   /* ---------- 地图 ---------- */
   var map = L.map("mapBox", { worldCopyJump: true, minZoom: 2, maxZoom: 10 }).setView([22, 60], 2);
-  L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png", {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>',
-    subdomains: "abcd",
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19,
   }).addTo(map);
 
@@ -122,7 +122,7 @@
     if (bounds.length) map.fitBounds(L.latLngBounds(bounds).pad(0.25));
   }
   function renderFilter(active) {
-    var btns = [{ id: "all", name: "全部 11 段", color: "#12213f" }].concat(
+    var btns = [{ id: "all", name: "全部 " + PLAN.legs.length + " 段", color: "#12213f" }].concat(
       PLAN.stages.map(function (s) { return { id: s.id, name: s.name + " · " + s.period, color: s.color }; })
     );
     filterWrap.innerHTML = "";
